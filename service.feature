@@ -68,6 +68,25 @@ Fonctionnalité:
         | descente         | valide   |
 
   Règle: Si la balle touche le filet pendant le service, ce dernier est "let" et doit être rejoué
-    Etant donné que le service est en cours
+    Scénario: Service let
+      Etant donné que le service est en cours
       Quand la balle touche le filet
       Alors le service est "let" et doit être rejoué
+
+  Règle: Une service est valide si tous ses composants sont valides
+
+    Plan du Scénario: Service complet
+      Etant donné que la position initiale est <statut position initiale>
+      Et que le lancé est <statut lancé>
+      Et que la frappe est <statut frappe>
+      Et que les rebonds de la balle sont <statut rebonds>
+      Quand le service est effectué
+      Alors le service est <statut service>
+
+      Exemples:
+        | statut position initiale | statut lancé | statut frappe | statut rebonds | statut service |
+        | invalide                 | valide       | valide        | valide         | invalide       |
+        | valide                   | invalide     | valide        | valide         | invalide       |
+        | valide                   | valide       | invalide      | valide         | invalide       |
+        | valide                   | valide       | valide        | invalide       | invalide       |
+        | valide                   | valide       | valide        | valide         | valide         |
